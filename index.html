@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icons/icon-72x72.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>Travel GIS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- REGISTER SERVICE WORKER -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/worker.js")
+            .then((reg) =>
+              console.log("Service Worker registered:", reg.scope)
+            )
+            .catch((err) =>
+              console.log("Service Worker registration failed:", err)
+            );
+        });
+      } else {
+        console.log("Service Worker not supported.");
+      }
+    </script>
+
+    <!-- Vite React Entry -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
